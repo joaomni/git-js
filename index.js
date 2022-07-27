@@ -27,7 +27,7 @@ function start(){
 
         shell.exec(`git commit -m "${commitText}"`)
 
-        shell.exec(`git push origin ${branchName}`)
+        shell.exec(`git push origin ${gitjs.branchName}`)
     }
 
     initNewCommit()
