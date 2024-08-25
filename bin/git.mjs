@@ -81,7 +81,7 @@ async function start() {
         }
 
         const addCommand = "git add --all";
-        console.log(chalk.cyan(`Executando: ${addCommand}`));
+        console.log(chalk.cyan(`\n--- Executando: ${addCommand} ---\n`));
         const addResult = shell.exec(addCommand);
         if (addResult.code !== 0) {
             console.error(chalk.red('Erro ao adicionar arquivos.'));
@@ -91,7 +91,7 @@ async function start() {
         const commitMessage = readlineSync.question("Escreva seu comentário: ");
         const formattedMessage = `${gitjs.commitType}${gitjs.scope}: ${commitMessage}`;
         const commitCommand = `git commit -m "${formattedMessage}"`;
-        console.log(chalk.cyan(`Executando: ${commitCommand}`));
+        console.log(chalk.cyan(`\n--- Executando: ${commitCommand} ---\n`));
         const commitResult = shell.exec(commitCommand);
         if (commitResult.code === 0) {
             console.log(chalk.green('Commit realizado com sucesso:', formattedMessage));
@@ -101,7 +101,7 @@ async function start() {
         }
 
         const pushCommand = `git push origin ${gitjs.branchName}`;
-        console.log(chalk.cyan(`Executando: ${pushCommand}`));
+        console.log(chalk.cyan(`\n--- Executando: ${pushCommand} ---\n`));
         const pushResult = shell.exec(pushCommand);
         if (pushResult.code === 0) {
             console.log(chalk.green('Push realizado com sucesso.'));
