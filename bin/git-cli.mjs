@@ -2,12 +2,7 @@
 
 import readlineSync from 'readline-sync'
 import shell from 'shelljs'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
 import chalk from 'chalk'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
 
 async function start() {
   const gitjs = {}
