@@ -53,8 +53,12 @@ function start() {
     }
 
     function createNewBranch(branch) {
-        console.log(`\nExecutando: git checkout -b "${branch}"`);
-        if (shell.exec(`git checkout -b "${branch}"`).code !== 0) {
+        const command = `git checkout -b "${branch}"`;
+        console.log(`\nExecutando: ${command}`);
+        const result = shell.exec(command);
+        if (result.code === 0) {
+            console.log('Branch criada com sucesso:', branch);
+        } else {
             console.error('Erro ao criar a branch.');
             process.exit(1);
         }
@@ -63,20 +67,40 @@ function start() {
     createNewBranch(gitjs.branchName);
 
     function initNewCommit() {
-        if (shell.exec("git status").code !== 0) {
+        const statusCommand = "git status";
+        console.log(`\nExecutando: ${statusCommand}`);
+        const statusResult = shell.exec(statusCommand);
+        if (statusResult.code !== 0) {
             console.error('Erro ao executar git status.');
             process.exit(1);
         }
-        shell.exec("git add --all");
+
+        const addCommand = "git add --all";
+        console.log(`Executando: ${addCommand}`);
+        const addResult = shell.exec(addCommand);
+        if (addResult.code !== 0) {
+            console.error('Erro ao adicionar arquivos.');
+            process.exit(1);
+        }
 
         const commitMessage = readlineSync.question("Escreva seu comentário: ");
         const formattedMessage = `${gitjs.commitType}${gitjs.scope}: ${commitMessage}`;
-        if (shell.exec(`git commit -m "${formattedMessage}"`).code !== 0) {
+        const commitCommand = `git commit -m "${formattedMessage}"`;
+        console.log(`Executando: ${commitCommand}`);
+        const commitResult = shell.exec(commitCommand);
+        if (commitResult.code === 0) {
+            console.log('Commit realizado com sucesso:', formattedMessage);
+        } else {
             console.error('Erro ao fazer o commit.');
             process.exit(1);
         }
 
-        if (shell.exec(`git push origin ${gitjs.branchName}`).code !== 0) {
+        const pushCommand = `git push origin ${gitjs.branchName}`;
+        console.log(`Executando: ${pushCommand}`);
+        const pushResult = shell.exec(pushCommand);
+        if (pushResult.code === 0) {
+            console.log('Push realizado com sucesso.');
+        } else {
             console.error('Erro ao fazer o push.');
             process.exit(1);
         }
