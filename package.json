@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/joaomoreira-eng/git-js.git"
   },
-  "keywords": [],
+  "keywords": ["git", "github", "conventional commits", "cli", "git commands"],
   "author": "João Moreira",
   "license": "ISC",
   "bugs": {
