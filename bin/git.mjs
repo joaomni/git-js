@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 
-const readlineSync = require('readline-sync');
-const shell = require('shelljs');
-const process = require('process');
+import readlineSync from 'readline-sync';
+import shell from 'shelljs';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import chalk from 'chalk';
 
-function start() {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+async function start() {
     const gitjs = {};
 
     // Definir emojis e descrições para cada tipo de commit
@@ -35,7 +40,7 @@ function start() {
         const index = readlineSync.keyInSelect(choices, 'Escolha o tipo de commit:');
 
         if (index === -1) {
-            console.log("Operação cancelada.");
+            console.log(chalk.red("Operação cancelada."));
             process.exit(1); // Sai do script se o usuário cancelar a escolha
         }
 
@@ -54,12 +59,12 @@ function start() {
 
     function createNewBranch(branch) {
         const command = `git checkout -b "${branch}"`;
-        console.log(`\nExecutando: ${command}`);
+        console.log(chalk.cyan(`\n--- Executando: ${command} ---\n`));
         const result = shell.exec(command);
         if (result.code === 0) {
-            console.log('Branch criada com sucesso:', branch);
+            console.log(chalk.green('Branch criada com sucesso:', branch));
         } else {
-            console.error('Erro ao criar a branch.');
+            console.error(chalk.red('Erro ao criar a branch.'));
             process.exit(1);
         }
     }
@@ -68,40 +73,40 @@ function start() {
 
     function initNewCommit() {
         const statusCommand = "git status";
-        console.log(`\nExecutando: ${statusCommand}`);
+        console.log(chalk.cyan(`\n--- Executando: ${statusCommand} ---\n`));
         const statusResult = shell.exec(statusCommand);
         if (statusResult.code !== 0) {
-            console.error('Erro ao executar git status.');
+            console.error(chalk.red('Erro ao executar git status.'));
             process.exit(1);
         }
 
         const addCommand = "git add --all";
-        console.log(`Executando: ${addCommand}`);
+        console.log(chalk.cyan(`Executando: ${addCommand}`));
         const addResult = shell.exec(addCommand);
         if (addResult.code !== 0) {
-            console.error('Erro ao adicionar arquivos.');
+            console.error(chalk.red('Erro ao adicionar arquivos.'));
             process.exit(1);
         }
 
         const commitMessage = readlineSync.question("Escreva seu comentário: ");
         const formattedMessage = `${gitjs.commitType}${gitjs.scope}: ${commitMessage}`;
         const commitCommand = `git commit -m "${formattedMessage}"`;
-        console.log(`Executando: ${commitCommand}`);
+        console.log(chalk.cyan(`Executando: ${commitCommand}`));
         const commitResult = shell.exec(commitCommand);
         if (commitResult.code === 0) {
-            console.log('Commit realizado com sucesso:', formattedMessage);
+            console.log(chalk.green('Commit realizado com sucesso:', formattedMessage));
         } else {
-            console.error('Erro ao fazer o commit.');
+            console.error(chalk.red('Erro ao fazer o commit.'));
             process.exit(1);
         }
 
         const pushCommand = `git push origin ${gitjs.branchName}`;
-        console.log(`Executando: ${pushCommand}`);
+        console.log(chalk.cyan(`Executando: ${pushCommand}`));
         const pushResult = shell.exec(pushCommand);
         if (pushResult.code === 0) {
-            console.log('Push realizado com sucesso.');
+            console.log(chalk.green('Push realizado com sucesso.'));
         } else {
-            console.error('Erro ao fazer o push.');
+            console.error(chalk.red('Erro ao fazer o push.'));
             process.exit(1);
         }
     }
