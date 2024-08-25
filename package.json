@@ -1,10 +1,13 @@
 {
-  "name": "git",
+  "name": "git-cli-tool",
   "version": "1.0.0",
-  "description": "Executando comandos git com Javascript",
-  "main": "index.js",
+  "description": "A CLI tool for creating git branches and commits with Conventional Commit messages.",
+  "main": "bin/git.js",
+  "bin": {
+    "git-cli-tool": "./bin/git.js"
+  },
   "scripts": {
-    "start": "node index.js"
+    "start": "node bin/git.js"
   },
   "repository": {
     "type": "git",
