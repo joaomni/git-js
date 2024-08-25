@@ -1,14 +1,14 @@
 {
   "name": "git-cli-tool",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "A CLI tool for creating git branches and commits with Conventional Commit messages.",
   "main": "bin/git.mjs",
   "type": "module",
   "bin": {
-    "git-cli-tool": "/bin/git.mjs"
+    "git-cli-tool": "bin/gitjs"
   },
   "scripts": {
-    "start": "node bin/git.mjs"
+    "test": "node src/gitjs.mjs"
   },
   "repository": {
     "type": "git",
