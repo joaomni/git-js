@@ -1,14 +1,16 @@
 {
   "name": "git-cli-tool",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "A CLI tool for creating git branches and commits with Conventional Commit messages.",
-  "main": "./bin/git-cli.ts",
+  "main": "./bin/git-cli.js",
   "type": "module",
   "bin": {
-    "git-cli": "bin/git-cli.ts"
+    "git-cli": "bin/git-cli.js"
   },
   "scripts": {
-    "dev": "tsx bin/git-cli.ts"
+    "build": "tsc",
+    "start": "npm run build && node bin/git-cli.js",
+    "dev": "tsx src/git-cli.ts"
   },
   "repository": {
     "type": "git",
@@ -29,7 +31,7 @@
   "homepage": "https://github.com/joaomoreira-eng/git-js#readme",
   "dependencies": {
     "chalk": "^5.3.0",
-    "git-cli-tool": "^1.1.3",
+    "git-cli-tool": "^1.1.4",
     "readline-sync": "^1.4.10",
     "shelljs": "^0.8.5"
   },
