@@ -29,7 +29,7 @@ async function createCommit() {
     gitjs.commitType = askAndReturnCommitType(commitTypes);
     // Perguntar o escopo do commit
     gitjs.scope = askAndReturnScope();
-    // Perguntar o nome da branch
+    // Perguntar o nome da branch 
     gitjs.branchName = await askAndReturnBranchName();
     
     function askAndReturnCommitType(commitTypes) {
