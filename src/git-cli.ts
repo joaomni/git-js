@@ -21,19 +21,19 @@ async function createCommit() {
   };
 
   // Definir emojis e descrições para cada tipo de commit
-  const commitTypes: Record<string, CommitType> = {
-    feat: { emoji: '✨', description: 'A new feature' },
-    fix: { emoji: '🐛', description: 'A bug fix' },
-    docs: { emoji: '📚', description: 'Documentation only changes' },
-    style: { emoji: '💎', description: 'Styles (no code change)' },
-    refactor: { emoji: '📦', description: 'Code refactoring' },
-    perf: { emoji: '🚀', description: 'Performance improvements' },
-    test: { emoji: '🚨', description: 'Tests' },
-    build: { emoji: '🛠', description: 'Builds' },
-    ci: { emoji: '⚙️', description: 'CI configuration' },
-    chore: { emoji: '♻️', description: 'Chores' },
-    revert: { emoji: '🗑', description: 'Reverts' },
-  };
+  const commitTypes = {
+    feat: { emoji: '\u{2728}', description: 'A new feature' },  // ✨
+    fix: { emoji: '\u{1F41B}', description: 'A bug fix' },      // 🐛
+    docs: { emoji: '\u{1F4DA}', description: 'Documentation only changes' },  // 📚
+    style: { emoji: '\u{1F48E}', description: 'Styles (no code change)' },    // 💎
+    refactor: { emoji: '\u{1F4E6}', description: 'Code refactoring' },        // 📦
+    perf: { emoji: '\u{1F680}', description: 'Performance improvements' },    // 🚀
+    test: { emoji: '\u{1F6A8}', description: 'Tests' },                       // 🚨
+    build: { emoji: '\u{1F6E0}', description: 'Builds' },                     // 🛠
+    ci: { emoji: '\u{2699}', description: 'CI configuration' },               // ⚙️
+    chore: { emoji: '\u{267B}', description: 'Chores' },                      // ♻️
+    revert: { emoji: '\u{1F5D1}', description: 'Reverts' },                   // 🗑
+};
 
   // Perguntar o tipo de commit
   gitjs.commitType = askAndReturnCommitType(commitTypes);
