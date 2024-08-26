@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node bin/git-cli.js",
+    "start": "node bin/git-cli.js",
     "dev": "tsx src/git-cli.ts"
   },
   "repository": {
